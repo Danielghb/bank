@@ -36,9 +36,9 @@ def manipulate_sql(dml_sql: {type: str, help: "insert or delete or update"}):
         con.close()
 
 
-def save_csv(csv_path, item: {type: list}):
+def save_csv(csv_path, items: {type: list}):
     with open(csv_path, 'w', encoding="utf-8", newline="\n") as csv_file:   # errors="ignore"
-        for i in item:
+        for i in items:
             csv_file.write(i)
 
 
@@ -111,4 +111,14 @@ def transfer(user_id, passwd, amount, to_user_id):
 
 
 if __name__ == '__main__':
+    create_sql("create table tb (col_name string)...;")
+    manipulate_sql("insert into tb (col_names) values (col_vals), (col_vals)...;")
+    save_csv("csv_path", ["item1", "item2"])
+    query_sql("select col_name from tb...;")
+
+    open_account("user_id", "passwd", 1000)
+    deposit("user_id", "passwd", 2000)
+    withdraw("user_id", "passwd", 500)
+    transfer("user_id", "passwd", 500, "to_user_id")
+
     pass
