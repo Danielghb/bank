@@ -110,15 +110,19 @@ def transfer(user_id, passwd, amount, to_user_id):
         con.close()
 
 
+def test_function(create_sql_, manipulate_sql_, csv_path, items, query_sql_):
+    create_sql(create_sql_)
+    manipulate_sql(manipulate_sql_)
+    save_csv(csv_path, items)
+    query_sql(query_sql_)
+
+
+def test_action(user_id, passwd, amount_0, amount_1, to_user_id):
+    open_account(user_id, passwd, amount_0)
+    deposit(user_id, passwd, amount_0)
+    withdraw(user_id, passwd, amount_1)
+    transfer(user_id, passwd, amount_1, to_user_id)
+
+
 if __name__ == '__main__':
-    create_sql("create table tb (col_name string)...;")
-    manipulate_sql("insert into tb (col_names) values (col_vals), (col_vals)...;")
-    save_csv("csv_path", ["item1", "item2"])
-    query_sql("select col_name from tb...;")
-
-    open_account("user_id", "passwd", 1000)
-    deposit("user_id", "passwd", 2000)
-    withdraw("user_id", "passwd", 500)
-    transfer("user_id", "passwd", 500, "to_user_id")
-
     pass
