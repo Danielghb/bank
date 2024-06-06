@@ -54,6 +54,13 @@ def query_sql(dql_sql: {type: str, help: "select col_name from tb...;"}):
         con.close()
 
 
+def test_function(create_sql_, manipulate_sql_, csv_path, items, query_sql_):
+    create_sql(create_sql_)
+    manipulate_sql(manipulate_sql_)
+    save_csv(csv_path, items)
+    query_sql(query_sql_)
+
+
 def open_account(user_id, passwd, amount):
     cur = con.cursor()
     if amount < 500:
@@ -110,17 +117,12 @@ def transfer(user_id, passwd, amount, to_user_id):
         con.close()
 
 
-def test_function(create_sql_, manipulate_sql_, csv_path, items, query_sql_):
-    create_sql(create_sql_)
-    manipulate_sql(manipulate_sql_)
-    save_csv(csv_path, items)
-    query_sql(query_sql_)
-
-
-def test_action(user_id, passwd, amount_0, amount_1, to_user_id):
+def test_action(user_id="user_id", passwd="123456", amount_0=2000,
+                amount_1=500, to_user_id="to_user_id"):
     open_account(user_id, passwd, amount_0)
     deposit(user_id, passwd, amount_0)
     withdraw(user_id, passwd, amount_1)
+    open_account(to_user_id, "456789", amount_0)
     transfer(user_id, passwd, amount_1, to_user_id)
 
 
