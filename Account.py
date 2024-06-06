@@ -124,5 +124,5 @@ def test_action(user_id, passwd, amount_0, amount_1, to_user_id):
     transfer(user_id, passwd, amount_1, to_user_id)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     pass
